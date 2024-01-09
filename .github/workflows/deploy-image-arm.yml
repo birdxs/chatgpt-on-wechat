@@ -19,7 +19,7 @@ on:
     #  - master
      inputs:
       image_tag:
-        description: ''
+        description: 'chatgpt-on-wechat'
         required: true
         #default: 'unstable'
 env:
@@ -83,7 +83,10 @@ jobs:
               
               docker buildx create --use
               docker buildx build --platform linux/amd64 \
-                      -t birdxs/chatgpt-on-wechat-arm64 \
+                      -t birdxs/chatgpt-on-wechat-amd64:1.5.4 \
                       --push \
                       -f ./docker/Dockerfile.latest .
-              
+              docker buildx build --platform linux/arm64 \
+                      -t birdxs/chatgpt-on-wechat-arm64:1.5.4 \
+                      --push \
+                      -f ./docker/Dockerfile.latest .
