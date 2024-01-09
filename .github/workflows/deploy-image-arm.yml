@@ -19,7 +19,7 @@ on:
     #  - master
      inputs:
       image_tag:
-        description: 'chatgpt-on-wechat'
+        description: ''
         required: true
         #default: 'unstable'
 env:
