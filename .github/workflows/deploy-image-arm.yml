@@ -61,13 +61,13 @@ jobs:
           # Platforms to install (e.g. arm64,riscv64,arm)
           # platforms: arm64
           platforms: all
-
+          
       - name: Build and push Docker image
-        uses: docker/build-push-action@v3
-        with:
-          context: .
-          push: true
-          file: ./docker/Dockerfile.latest
-          platforms: linux/arm64
-          tags: ${{ steps.meta.outputs.tags }}-arm64
-          labels: ${{ steps.meta.outputs.labels }}
+        run: |
+              
+              docker buildx create --use
+              docker buildx build --platform linux/amd64 \
+                      -t birdxs/chatgpt-on-wechat-arm64 \
+                      --push \
+                      -f ./docker/Dockerfile.latest .
+              
